@@ -1,0 +1,51 @@
+<div class="sidebar d-flex flex-column p-3">
+    <div class="container p-3">
+      <h4 class="text-primary fw-bold">ADMIN DIKDASMEN</h4>
+      <p class="fmss fw-normal">admin sakumu</p>
+    </div>   
+    <hr>
+    <h6 class="ms-3">Menu</h6>
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item mx-2">
+        <a href="/"  <% if(page === 'dashboard'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-speedometer2 col-1 px-0 ms-2"></i>
+          <span class="fms fw-normal col-9 px-0 ms-2">Dashboard</span>
+        </a>
+      </li>
+
+      <!-- <li class="nav-item mx-2">
+        <a href="/register" <% if(page === 'register_sekolah'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-pencil-square col-1 px-0 ms-2"></i>         
+          <span class="fms fw-normal col-9 px-0 ms-2">Register Sekolah</span>
+        </a>
+      </li> -->
+
+      <li class="nav-item mx-2">
+        <a href="/list" <% if(page === 'list_sekolah'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-list-columns-reverse col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">List Sekolah</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item mx-2">
+        <a href="/listlaporan" <% if(page === 'list_laporan'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-list-columns-reverse col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">List Laporan</span>
+        </a>
+      </li> -->
+
+      <!-- <li class="nav-item mx-2">
+        <a href="/penerimaan" <% if(page === 'inPenerimaan'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-bag-plus-fill col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Input Penerimaan</span>
+        </a>
+      </li> -->
+
+      <!-- <li class="nav-item mx-2">
+        <a href="/pengeluaran" <% if(page === 'inPengeluaran'){ %>class="nav-link active row"<% } else { %>class="nav-link row"<% } %> >
+          <i class="bi bi-bag-dash-fill col-1 px-0 ms-2"></i>          
+          <span class="fms fw-normal col-9 px-0 ms-2">Input Pengeluaran</span>
+        </a>
+      </li> -->
+    </ul>
+</div>
+    

@@ -1,0 +1,53 @@
+#SAKUMU
+- buat db list sekolah aktivasi [sql server](done)
+- referensi alur aktivasi(done)
+- setting connection from admin to mssql(undone)
+- dinamic data list activation(undone)
+- generate token insert into [ sql server & sqlite ] (undone)
+- function login mencocokan token sakumu dan sql server (undone)
+- function jika tidak cocok delete token (undone)
+
+
+-back up logic aktivasi
+
+
+#kondisi data realtime sql server
+- input data(done)
+- olah data jadi aruskas -> sakumu aruskas(done)
+- jika ada data yang sama maka update(done)
+    - filter data(done)
+    - sinkron manual berdasarkan periode -> jika ada data identitas sekolah drop -> ganti data yang baru (done)
+        - client buat fetch axios dengan membawa req.body identitas aplikasi(done)
+        - server buat fungsi get data laporan keuangan dimana di get berdasarkan identitas aplikasi jika value db > 0 (done)
+        - maka data dihapus jika value sama dengan 0 maka tambah data(done)
+            - kendala saat sinkron data tidak langsung sinkron(undone)
+            - alternatif fitur cek data apakah sudah tersinkron(done)
+    - fitur tutup buka akses sinkron
+
+
+
+
+
+
+
+
+const submit = async (kode_sekolah, kode_aktivasi, kode_req) => {
+    const timestamp = date.format(new Date(),'YYYYMMDDHHmmss');
+    if (kode_req !== "sakumu_aktivasi") {
+        return invalid_req;
+    }else{
+        if (kode_sekolah !== "sma_muhipo" || kode_aktivasi !== "sma001") {
+            const err_msg = "aktivasi gagal, kode sekolah & kode aktivasi tidak sesuai";
+            return {status: 401, response: {status: "no", msg: err_msg}};
+        }else{
+            const jwt_token = jwt.sign({id: "muhipo1001"}, "secrettYudyJjbHBsla"+timestamp);
+            const msg = "aktivasi berhasil, silakan login!"
+            const data = {
+                key: "tYudyJjbHBsla",
+                token: jwt_token,
+                lastsync: timestamp
+            }
+            return {status: 200, response: {status: "ok", msg, data, timestamp}}
+        }
+    }
+}

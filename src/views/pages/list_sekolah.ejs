@@ -1,0 +1,48 @@
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col">
+            <h5><%= title%></h5>
+        </div>
+        <div class="col-sm text-end me-3">
+            <form action="#" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm rounded-start" placeholder="Pencarian" aria-label="Pencarian" id="search" name="search">
+                    <button class="btn btn-primary btn-sm rounded-end pe-2" type="submit"><i class="bi bi-search me-2"></i>Cari</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <% if (succ.length !== 0) { %>
+        <div class="alert alert-success mt-2" role="alert"><%= succ %></div>
+    <% } %>
+    <% if (exist.length !== 0) { %>
+        <div class="alert alert-danger mt-2" role="alert"><%= exist %></div>
+    <% } %>
+    <table class="table table-sm table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col" style="width: 5%;">No</th>
+                <th class="text-center" scope="col" style="width: 5%;">ID</th>
+                <th class="text-center" scope="col" style="width: 15%;">Nama Sekolah</th>
+                <th class="text-center" scope="col" style="width: 10%;">Kode Sekolah</th>
+                <th class="text-center" scope="col" style="width: 15%;">Kode Aktivasi</th>
+                <th class="text-center" scope="col" style="width: 25%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < data.length; i++) { %> 
+                <tr>
+                    <th class="text-center" scope="row"><%= no++ %></th>
+                    <th class="text-center" scope="row"><%= data[i].id %></th>
+                    <td class="text-center" scope="row"><%= data[i].namasekolah %></td>
+                    <td class="text-center" scope="row"><%= data[i].kodesekolah %></td>
+                    <td class="text-center" scope="row"><%= data[i].kodeaktivasi %></td>
+                    <td class="text-center" scope="row">
+                        <a href="/laporankas?kodesekolah=<%= data[i].kodesekolah %>" class="btn badge btn-success fw-normal"><i class="bi bi-eye-fill"></i> lihat keuangan </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

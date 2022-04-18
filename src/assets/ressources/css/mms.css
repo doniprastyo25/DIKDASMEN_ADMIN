@@ -1,0 +1,75 @@
+.bgc-grey-dark{
+    background-color: rgb(32, 32, 32);
+}
+
+.dot {
+    height: 10px;
+    width: 10px;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotsub {
+    height: 7px;
+    width: 7px;
+    margin: 0;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.fms {
+    font-size: 15px;
+}
+
+.fmss {
+    font-size: 13px;
+}
+
+@font-face { font-family: IsepMisbah; src: url('/ressources/font/isep_misbah.ttf'); } 
+.arabic {
+    font-family: IsepMisbah;
+    font-weight: bold;
+}
+
+.card-mms-sm{
+    max-width: 50%;
+    margin: auto;
+}
+
+.form-act{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.col-login{
+    border-left: 1px solid rgb(212, 212, 212);
+    padding: 2rem;
+}
+
+.card-login{
+    max-width: 70%;
+    margin: auto;
+}
+
+.col-set{
+    border-left: 1px solid rgb(212, 212, 212);
+    padding: 1rem;
+}
+
+.col-set-borderles{
+    padding: 1rem;
+}
+
+.text-sm{
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.img-thumb{
+    width: 200px;
+    height: 200px;
+}

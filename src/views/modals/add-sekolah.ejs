@@ -1,0 +1,60 @@
+<div class="modal fade" id="addsekolah" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-white"><i class="bi bi-info-circle me-3"></i></h5>
+            </div>
+            <div class="modal-body text-start">
+                <h5>Silahkan Isi Identitas Sekolah</h5>
+                <h6></h6>
+                <form class="form-group" method="post" action="/list/add">
+                    <div class="container-fluid p-0">
+                        <hr>
+                        <div class="card bg-white p-3 mb-3">
+                            <label for="inpIdSekolah" class="col-sm-2 col-form-label">ID Sekolah</label>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="text" class="form-control form-control-sm" name="inpIdSekolah" id="inpIdSekolah" autocomplete="off" required>
+                                </div>
+                            </div>                     
+                            <label for="inpNamaSekolah" class="col-sm-2 col-form-label">Nama Sekolah</label>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="text" class="form-control form-control-sm" name="inpNamaSekolah" id="inpNamaSekolah" autocomplete="off" required>
+                                </div>
+                            </div>                     
+                            <label for="inpKodeSekolah" class="col-sm-2 col-form-label">Kode Sekolah</label>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="text" class="form-control form-control-sm" name="inpKodeSekolah" id="inpKodeSekolah" autocomplete="off" required>
+                                </div>
+                            </div>                     
+                            <label for="inpKodeAktivasi" class="col-sm-2 col-form-label">Kode Aktivasi</label>
+                            <div class="row">
+                                <div class="col-sm">
+                                    <input type="text" class="form-control form-control-sm" name="inpKodeAktivasi" id="inpKodeAktivasi" autocomplete="off" required>
+                                </div>
+                            </div>                     
+                            <!-- <div class="row">
+                                <div class="col-sm">
+                                    <input type="hidden" class="form-control form-control-sm" name="inpKodeAktivasi" id="inpKodeAktivasi" autocomplete="off" required>
+                                </div>
+                            </div>                      -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        </div>
+                        <div class="col col-sm-4 text-end mt-2">
+                            <button type="reset" class="btn btn-danger btn-sm"><i class="bi bi-hdd me-2"></i></i>Reset</button>
+                            <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-hdd me-2"></i></i>Simpan</button>
+                        </div>
+                    </div>
+                </form> 
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

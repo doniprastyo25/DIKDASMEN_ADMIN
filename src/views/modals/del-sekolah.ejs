@@ -1,0 +1,18 @@
+<div class="modal fade" id="delsekolah" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-danger">
+          <h5 class="m-0 p-0 text-white">Hapus Siswa</h5>
+        </div>
+        <div class="modal-body text-start">
+          <p>Apakah anda yakin ingin menghapus "<%= data.namasekolah %>" dengan id<%= data.id %> ?</p>
+        </div>
+        <div class="modal-footer">          
+            <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Batal</button>
+            <form action="delete?id=<%= data.id %>" method="post">
+                <button type="submit" class="btn btn-danger btn-sm">Ya Hapus</button>
+            </form>
+        </div>        
+      </div>
+    </div>
+</div>

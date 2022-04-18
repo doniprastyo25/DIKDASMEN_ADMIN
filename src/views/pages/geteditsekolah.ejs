@@ -1,0 +1,28 @@
+<form class="form-group" method="post" action="/editsekolah?id=<%= data.Id %>">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h3> </h3>
+            </div>
+            <div class="col-sm-4 text-end me-3 mt-2">
+                <a href="#" class="btn btn-secondary btn-sm me-2"><i class="bi bi-x-circle me-2"></i></i>Batal</a>
+                <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="#mHapus">
+                    <i class="bi bi-trash me-2"></i>Hapus
+                </button>
+                <button type="submit" class="btn btn-success btn-sm"><i class="bi bi-hdd me-2"></i></i>Simpan Perubahan</button>           
+            </div>
+        </div>
+        <hr>
+        <h6 class="mb-3">Edit</h6>
+        <div class="card bg-white p-3 mb-3">                                
+            <h6 class="text-start fw-normal">Nama Sekolah</h6>
+            <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpNamasekolah" id="inpNamasekolah" required value="<%= data.NamaSekolah %>">
+            </div>                                     
+            <h6 class="text-start fw-normal">Kode Aktivasi</h6>
+            <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="inpKodeaktivasi" id="inpKodeaktivasi" required value="<%= data.KodeAktivasi %>">
+            </div>                                     
+        </div>
+    </div>
+</form> 

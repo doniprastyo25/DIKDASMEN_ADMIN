@@ -1,0 +1,78 @@
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col">
+            <h5><%= title%></h5>
+        </div>
+    </div>
+    <div class="card mt-3">
+        <div class="card-body">
+            <h5 class="text-center text-uppercase">Laporan Arus Kas</h5>
+            <table class="table table-sm table-bordered table-striped mt-3">
+                <thead>
+                    <tr>
+                      <th class="text-center" scope="col" style="width: 10%;">Nomor</th>
+                      <th class="text-center" scope="col" style="width: 60%;">Uraian</th>
+                      <th class="text-center" scope="col" style="width: 30%;">Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td class="fw-bold">PENERIMAAN</td>
+                        <td></td>
+                    </tr>
+                    <% for (let i = 0; i < penerimaan.length; i++) { %>
+                        <tr>
+                            <td class="text-center">1.<%= penerimaan[i].sub %></td>
+                            <td> <%= penerimaan[i].dess %> </td>
+                            <td class="text-end"> <%= penerimaan[i].totalRp %> </td>
+                        </tr>
+                        <% } %>
+                    <tr>
+                        <td></td>
+                        <td class="fw-bold">TOTAL PENERIMAAN</td>
+                        <td class="fw-bold text-end"> <%= total_penerimaan %> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-sm  table-bordered table-striped mt-3">
+                <thead>
+                    <tr>
+                      <th class="text-center" scope="col" style="width: 10%;">Nomor</th>
+                      <th class="text-center" scope="col" style="width: 60%;">Uraian</th>
+                      <th class="text-center" scope="col" style="width: 30%;">Jumlah</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <td class="fw-bold">PENGELUARAN</td>
+                        <td></td>
+                    </tr>
+                    <% for (let i = 0; i < pengeluaran.length; i++) { %>
+                        <tr>
+                            <td class="text-center">1.<%= pengeluaran[i].sub %></td>
+                            <td><%= pengeluaran[i].dess %></td>
+                            <td class="text-end"><%= pengeluaran[i].totalRp %></td>
+                        </tr>                        
+                    <% } %>
+                    <tr>
+                        <td></td>
+                        <td class="fw-bold">TOTAL PENGELUARAN</td>
+                        <td class="fw-bold text-end"> <%= total_pengeluaran %> </td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr>
+            <table class="table table-sm  table-bordered table-striped mt-3">
+                <thead>
+                    <tr>
+                      <th class="text-center" scope="col" style="width: 70%;">Total Kas</th>
+                      <th class="text-center" scope="col" style="width: 30%;"> <%= totalAll %> </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <hr>
+</div>

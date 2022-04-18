@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title><%= title %></title>
+    <!-- CSS (bootstrap) -->
+    <link rel="stylesheet" href="/styles/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/ressources/css/mms.css">
+    <link rel="stylesheet" href="/icon/bootstrap-icons.css">
+    <script src="/styles/dist/js/bootstrap.js"></script>   
+    <script src="/styles/dist/js/bootstrap.bundle.min.js"></script>   
+    <script src="/styles/dist/js/popper.min.js"></script>
+    <!-- Step 1) Load D3.js -->
+    <!-- billboard js -->
+    <script src="/ressources/js/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="/ressources/css/billboard.css">
+    <!-- end billboardjs -->  
+    <script src="/ressources/js/chart.js"></script>
+</head>
+<body>
+  <main>
+    <div class="container-fluid min-vh-100 d-flex flex-column">
+      <div class="row flex-grow-1">
+          <div class="col-md-2 m-0 p-0">            
+            <%- include('./partials/sidebar'); %>
+          </div>
+          <div class="col-md-10 p-3 border bg-light">
+            <div class="card bg-white h-100">
+              <div class="card-body">
+                
+                  <%- body %> 
+                
+              </div>
+            </div>
+            
+          </div>
+      </div>
+  </div>
+</main>
+<!-- author : rikiyukie -->
+</body>
+
+</html>
