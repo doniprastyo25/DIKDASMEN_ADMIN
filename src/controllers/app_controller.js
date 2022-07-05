@@ -106,6 +106,30 @@ const getListSekolah = async (req, res, next) => {
     }
 }
 
+const getunsync = async (req, res, next) => {
+    try {
+        await data_aktivasi.getunsync(function(data) {
+            let listdata = []
+            for (let i = 0; i < data.data.length; i++) {
+                listdata.push({
+                    kodesekolah:data.data[i].kodeSekolah,
+                    namaSekolah:data.data[i].NamaSekolah
+                })                
+            }
+            // console.log(listdata);
+            res.render('./pages/list_unsync', {
+                title: 'List Sekolah sudah sinkron',
+                layout: 'main_layout',
+                page: 'list_sudah_sinkron',
+                data:listdata,
+                no: 1
+            })
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getListLaporan = async (req, res, next) => {
     res.render('./pages/listlaporan', {
         title: 'List Laporan',
@@ -208,7 +232,7 @@ const editsekolah = async (req, res, next) => {
 
 const getLaporankas = async (req, res, next) => {
     try {
-        const kodesekolah = req.query.kodesekolah
+        const kodesekolah = atob(req.query.kodesekolah)
         await data_aktivasi.getLaporan(kodesekolah, function(data) {
             // console.log(data);
             if (data.status === 'ok') {
@@ -270,6 +294,119 @@ const getDelete = async (req, res, next) => {
     }
 }
 
+// menu list period
+const getlistperiod = async (req, res, next) => {
+    try {
+        await data_aktivasi.getlistallperiod(function(data) {
+            res.render('./pages/list_period', {
+                title: 'List Period',
+                layout: 'main_layout',
+                page: 'list_periode',
+                data: data,
+                no: 1
+            })
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getlistsekolahbyperiod = async(req, res, next) => {
+    const periode = atob(req.query.periode)
+    await data_aktivasi.getsekolahbyperiod(periode, function(data) {
+        try {
+            res.render('./pages/list_sekolah_by_period',{
+                title: 'List Sekolah By Period',
+                layout: 'main_layout',
+                page: 'list_sekolah_by_period',
+                data:data,
+                no: 1
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+const getperiodesinkron = async(req, res, next) => {
+    const appsekolah = atob(req.query.appsekolah)
+    const periode = atob(req.query.periode)
+    // console.log(periode);
+    await data_aktivasi.GetDetailSinkronPeriod(appsekolah, periode, function(data) {
+        // console.log(data);
+        const terima = data.penerimaan
+        const listpenerimaan = [];
+        let totalIn = 0
+        for (let i = 0; i < terima.length; i++) {
+            listpenerimaan.push({
+                sub: terima[i].sub,
+                dess: terima[i].dess,
+                total: terima[i].total,
+                totalRp: terima[i].totalRp
+            })
+            totalIn += terima[i].total
+        }
+        const keluar = data.pengeluaran
+        const listpengeluaran = [];
+        let totalout = 0
+        for (let i = 0; i < keluar.length; i++) {
+            listpengeluaran.push({
+                sub: keluar[i].sub,
+                dess: keluar[i].dess,
+                total: keluar[i].total,
+                totalRp: keluar[i].totalRp
+            })
+            totalout += keluar[i].total
+        }
+        // console.log(totalout);
+        const totalAll = totalIn - totalout
+    try {
+            res.render('./pages/detail_sinkron_period', {
+                title: 'Detail periode sinkron',
+                layout: 'main_layout',
+                page: 'detail_sinkron_period',
+                penerimaan: data.penerimaan,
+                pengeluaran: data.pengeluaran,
+                total_penerimaan: rupiah.convert(totalIn),
+                total_pengeluaran: rupiah.convert(totalout),
+                totalAll:rupiah.convert(totalAll) 
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+const getperiodbysekolah = async(req, res, next) => {
+    const appsekolah = atob(req.query.appsekolah)
+    await data_aktivasi.GetListPeriodBySekolah(appsekolah, function(data) {
+        try {
+            res.render(`./pages/list_period_by_sekolah`, {
+                title: 'List periode sekolah',
+                layout: 'main_layout',
+                page: 'list_periode_sinkron',
+                data: data,
+                no: 1
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    })
+}
+
+const delperiodbysekolah = async(req, res, next) =>{
+    const appsekolah = atob(req.query.appsekolah);
+    const periode = atob(req.query.periode)
+    await data_aktivasi.GetDeletePeriodSekolah(appsekolah, periode, function(data) {
+        console.log(data.data.msg);
+        if (data.data.status == 200) {
+            req.flash(`respons`, data.data.msg);
+            res.redirect(`listperiod`)
+        } else {
+            
+        }
+    })
+}
 module.exports = {
     get_login,
     post_login,
@@ -288,5 +425,11 @@ module.exports = {
     getLaporankas,
     editsekolah,
     getEditsekolah,
-    getDelete
+    getDelete,
+    getunsync,
+    getlistperiod,
+    getlistsekolahbyperiod,
+    getperiodesinkron,
+    getperiodbysekolah,
+    delperiodbysekolah
 }

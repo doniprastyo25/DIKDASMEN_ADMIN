@@ -9,6 +9,7 @@ const apicontroller = require('../controllers/api_controller');
 router.get('/', controllers.getDashboard);
 router.get('/register', controllers.getRegisterSekolah);
 router.get('/list', controllers.getListSekolah);
+router.get('/listunsync', controllers.getunsync);
 router.get('/listlaporan', controllers.getListLaporan);
 router.get('/penerimaan', controllers.inPenerimaan);
 router.get('/pengeluaran', controllers.inPengeluaran);
@@ -17,6 +18,11 @@ router.get(`/getEditsekolah`, controllers.getEditsekolah)
 router.get('/API', controllers.apiSekolah);
 router.get('/APIid', controllers.apiSekolahID);
 router.get('/API/cektoken', controllers.post_cektoken);
+router.get('/listperiod', controllers.getlistperiod);
+router.get('/listSekolahByPeriod', controllers.getlistsekolahbyperiod);
+router.get('/detailperiodesinkron', controllers.getperiodesinkron);
+router.get(`/listperiodesinkron`, controllers.getperiodbysekolah);
+router.get(`/delperiodesekolah`, controllers.delperiodbysekolah);
 // router.get('/API/cektoken', controllers.post_cektoken);
 
 //APIGET

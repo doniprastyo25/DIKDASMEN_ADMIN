@@ -221,6 +221,7 @@ const getListAll = async (callback) => {
     try {
         axios({
             method:'get',
+            // url:'http://localhost:3123/APIlist',
             // url:'http://localhost:3123/API/cekLaporan',
             // url:'http://192.168.151.31:3123/API/cekLaporan',
             url:'http://467a0269edbd.sn.mynetname.net:80/APIlist',
@@ -228,6 +229,19 @@ const getListAll = async (callback) => {
             // console.log(response.data.data);
             const row = response.data.data
             return callback({row: row})
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const getunsync = async (callback) => {
+    try {
+        axios({
+            method:'get',
+            url:'http://localhost:3123/API/sudahsinkron',
+        }).then(function(response) {
+            return callback(response.data);
         })
     } catch (error) {
         console.log(error);
@@ -278,6 +292,162 @@ const delSekolah = async (id) => {
     }
 }
 
+const getlistallperiod = async(callback) => {
+    try {
+        axios({
+            method:'get',
+            // url:'http://localhost:3123/API/getlaporanperiod',
+            url:'http://467a0269edbd.sn.mynetname.net:80/API/getlaporanperiod',
+        }).then(function(response){
+            if (response.data.status == 200) {
+                // console.log(response.data.data.row[0].periode);
+                const listper = []
+                for (let i = 0; i < response.data.data.row.length; i++) {
+                    const per =response.data.data.row[i].periode
+                    const per1 =per.substring(0, 8);
+                    const per1tahun = per1.substring(0, 4)
+                    const per1bulan = per1.substring(4, 6)
+                    const per1tanggal = per1.substring(6, 8)
+                    const per2 =per.substring(9, 17)
+                    const per2tahun = per2.substring(0, 4)
+                    const per2bulan = per2.substring(4, 6)
+                    const per2tanggal = per2.substring(6, 8)
+                    const periode2 = per2bulan+"/"+per2tanggal+"/"+per2tahun
+                    const periode1 = per1bulan+"/"+per1tanggal+"/"+per1tahun
+                    const cperiode1 = date.format(new Date(periode1), 'DD/MMMM/YYYY')
+                    const cperiode2 = date.format(new Date(periode2), 'DD/MMMM/YYYY')
+                    const all = cperiode1+"-"+cperiode2
+                    listper.push({
+                        periode:all,
+                        realperiod:per
+                    })
+                }
+                // console.log(listper);
+                return callback(listper)
+            } else {
+                return callback({status:500, msg:'error line 326'})   
+            }
+        })
+    } catch (error) {
+        return callback({status:500, msg:'error line 330'})
+    }
+}
+
+const getsekolahbyperiod = async(periode, callback) => {
+    try {
+        axios({
+            method:'get',
+            // url:'http://localhost:3123/API/getsekolahperiod',
+            url:'http://467a0269edbd.sn.mynetname.net:80/API/getsekolahperiod',
+            data: {
+                periode:periode
+            }
+        }).then(function(response) {
+            // console.log(response.data);
+            const listdata = []
+            if (response.data.status == 200) {
+                for (let i = 0; i < response.data.data.length; i++) {
+                    listdata.push({
+                        appsekolah:response.data.data[i].appsekolah,
+                        Namasekolah:response.data.data[i].NamaSekolah,
+                        periode: response.data.data[i].periode
+                    })                    
+                }
+                return callback(listdata)
+            } else {
+                return callback('data error')
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const GetDetailSinkronPeriod = async(appsekolah, periode, callback) => {
+    try {
+        axios({
+            method:'get',
+            // url:'http://localhost:3123/API/getdetailsinkronperiod',
+            url:'http://467a0269edbd.sn.mynetname.net:80/API/getdetailsinkronperiod',
+            data: {
+                appsekolah:appsekolah,
+                periode:periode
+            }
+        }).then(function(response) {
+            // console.log(response.data);
+            if (response.data.status == 200) {
+                return callback({penerimaan:response.data.penerimaan, pengeluaran:response.data.pengeluaran})
+            } else {
+                return callback({msg:'data salah'})
+            }
+        })
+    } catch (error) {
+        return callback({msg:'request error'})
+    }
+}
+
+const GetListPeriodBySekolah = async(appsekolah, callback) => {
+    try {
+        axios({
+            method:'get',
+            // url:'http://localhost:3123/API/getlistperiodbysekolah',
+            url:'http://467a0269edbd.sn.mynetname.net:80/API/getlistperiodbysekolah',
+            data: {
+                appsekolah:appsekolah
+            }
+        }).then(function(response) {
+            // console.log(response.data);
+            if (response.data.status == 200) {
+                const listper = []
+                for (let i = 0; i < response.data.data.length; i++) {
+                    const per =response.data.data[i].periode
+                    const per1 =per.substring(0, 8);
+                    const per1tahun = per1.substring(0, 4)
+                    const per1bulan = per1.substring(4, 6)
+                    const per1tanggal = per1.substring(6, 8)
+                    const per2 =per.substring(9, 17)
+                    const per2tahun = per2.substring(0, 4)
+                    const per2bulan = per2.substring(4, 6)
+                    const per2tanggal = per2.substring(6, 8)
+                    const periode2 = per2bulan+"/"+per2tanggal+"/"+per2tahun
+                    const periode1 = per1bulan+"/"+per1tanggal+"/"+per1tahun
+                    const cperiode1 = date.format(new Date(periode1), 'DD/MMMM/YYYY')
+                    const cperiode2 = date.format(new Date(periode2), 'DD/MMMM/YYYY')
+                    const all = cperiode1+"-"+cperiode2
+                    listper.push({
+                        periode:all,
+                        realperiode:per,
+                        appsekolah: response.data.data[i].appsekolah
+                    })            
+                }
+                return callback(listper)
+            } else {
+                console.log('data error');
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const GetDeletePeriodSekolah = async(appsekolah, periode, callback) =>{
+    try {
+        axios({
+            method:'get',
+            // url:'http://localhost:3123/API/getdelperiodsinkron',
+            url:'http://467a0269edbd.sn.mynetname.net:80/API/getdelperiodsinkron',
+            data:{
+                appsekolah:appsekolah,
+                periode:periode
+            }
+        }).then(function(response) {
+            return callback(response)
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 module.exports = {
     submit,
     getListAll,
@@ -291,5 +461,11 @@ module.exports = {
     cekLaporan,
     cekSinkron,
     delSekolah,
-    getUpdateSekolah
+    getUpdateSekolah,
+    getunsync,
+    getlistallperiod,
+    getsekolahbyperiod,
+    GetDetailSinkronPeriod,
+    GetListPeriodBySekolah,
+    GetDeletePeriodSekolah
 }

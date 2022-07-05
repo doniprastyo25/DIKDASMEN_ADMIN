@@ -13,32 +13,23 @@
         </div>
     </div>
     <hr>
-    <% if (succ.length !== 0) { %>
-        <div class="alert alert-success mt-2" role="alert"><%= succ %></div>
-    <% } %>
-    <% if (exist.length !== 0) { %>
-        <div class="alert alert-danger mt-2" role="alert"><%= exist %></div>
-    <% } %>
     <table class="table table-sm table-bordered table-striped mt-3">
         <thead>
             <tr>
                 <th class="text-center" scope="col" style="width: 5%;">No</th>
-                <th class="text-center" scope="col" style="width: 30%;">Nama Sekolah</th>
+                <th class="text-center" scope="col" style="width: 15%;">Nama Sekolah</th>
                 <th class="text-center" scope="col" style="width: 10%;">Kode Sekolah</th>
-                <th class="text-center" scope="col" style="width: 10%;">Kode Aktivasi</th>
-                <th class="text-center" scope="col" style="width: 10%;">Aksi</th>
+                <th class="text-center" scope="col" style="width: 25%;">Aksi</th>
             </tr>
         </thead>
         <tbody>
             <% for (let i = 0; i < data.length; i++) { %> 
                 <tr>
                     <th class="text-center" scope="row"><%= no++ %></th>
-                    <th class="text-center" style="display:none" scope="row"><%= data[i].id %></th>
-                    <td class="text-left" scope="row"><%= data[i].namasekolah %></td>
-                    <td class="text-left" scope="row"><%= data[i].kodesekolah %></td>
-                    <td class="text-left" scope="row"><%= data[i].kodeaktivasi %></td>
+                    <td class="text-center" scope="row"><%= data[i].namaSekolah %></td>
+                    <td class="text-center" scope="row"><%= data[i].kodesekolah %></td>
                     <td class="text-center" scope="row">
-                        <a href="/listperiodesinkron?appsekolah=<%= btoa(data[i].kodesekolah) %> %>" class="btn badge btn-success fw-normal"><i class="bi bi-eye-fill"></i> List periode </a>
+                        <a href="/laporankas?kodesekolah=" class="btn badge btn-success fw-normal"><i class="bi bi-eye-fill"></i> lihat keuangan </a>
                     </td>
                 </tr>
             <% } %>

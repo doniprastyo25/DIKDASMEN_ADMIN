@@ -1,0 +1,39 @@
+<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col">
+            <h5><%= title%></h5>
+        </div>
+        <div class="col-sm text-end me-3">
+            <form action="#" method="post">
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm rounded-start" placeholder="Pencarian" aria-label="Pencarian" id="search" name="search">
+                    <button class="btn btn-primary btn-sm rounded-end pe-2" type="submit"><i class="bi bi-search me-2"></i>Cari</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    <table class="table table-sm table-bordered table-striped mt-3">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col" style="width: 10%;">No</th>
+                <th class="text-center" scope="col" style="width: 50%;">Periode</th>
+                <th class="text-center" scope="col" style="width: 18%;">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < data.length; i++) { %> 
+                <tr>
+                    <th class="text-center" scope="row"><%= no++ %></th>
+                    <td class="text-center" scope="row"><%= data[i].periode %></td>
+                    <td class="text-center" style="display:none" scope="row"><%= data[i].appsekolah %></td>
+                    <td class="text-center" style="display:none" scope="row"><%= data[i].realperiode %></td>
+                    <td class="text-center" scope="row">
+                        <a href="/detailperiodesinkron?appsekolah=<%= btoa(data[i].appsekolah) %>&periode=<%= btoa(data[i].realperiode) %> " class="btn badge btn-success fw-normal"><i class="bi bi-eye-fill"></i> Detail Keuangan </a>
+                        <a href="/delperiodesekolah?appsekolah=<%= btoa(data[i].appsekolah) %>&periode=<%= btoa(data[i].realperiode) %> " class="btn badge btn-danger fw-normal"><i class="bi bi-trash-fill"></i> Hapus </a>
+                    </td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>

@@ -65,7 +65,7 @@ app.listen(config.port, ()=>{
     console.log(" _________________________________");
     console.log("");
     // console.log(config.sql);
-    openlink();
+    // openlink();
 });
 
 async function openlink() {
